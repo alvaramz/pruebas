@@ -1,4 +1,4 @@
-# pruebas
+# Pruebas
 
 Repositorio para pruebas de código, pequeñas soluciones, etc.  Todo disponible en dominio público, salvo que algún archivo indique lo contrario.
 
