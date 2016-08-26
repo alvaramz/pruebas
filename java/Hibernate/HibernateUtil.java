@@ -11,6 +11,8 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
      Se omite el loggeo del error en caso de darse una excepción al crear el
      objeto de tipo SessionFactory.
 
+     Autor: Ing. Adrián Alvarado Ramírez.
+
 */
 public class HibernateUtil {
 
