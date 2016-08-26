@@ -10,6 +10,18 @@
         <link href="estilo/comun.css" rel="stylesheet" type="text/css"/>
     </h:head>
     <h:body>
+
+    <!--
+       Esta es la manera de mostrar la imágen almacenada como arreglo de bytes.
+          -->
+
         <p:graphicImage value="#{imagenBean.getPostr(informacionCursoBean.curso)}" />
+
+        <!--
+           Esta es la manera de mostrar la imágen codificada en base64,
+           en este caso, ci es la variable que corresonde a la entidad PmCurso
+              -->
+
+        <img src="#{ci.imagen}" class="imagenCurso" />
     </h:body>
 </html>

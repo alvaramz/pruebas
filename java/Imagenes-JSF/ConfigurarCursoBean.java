@@ -1,47 +1,25 @@
 package beans;
 
-import accesobd.AccesoCurso;
-import accesobd.AccesoModalidad;
-import accesobd.AccesoMoneda;
-import converters.AdmMonedaConverter;
-import converters.PmModalidadConverter;
-import entidades.AdmMoneda;
+
 import entidades.PmCurso;
-import entidades.PmModalidad;
 import java.io.Serializable;
 import java.util.Base64;
-import java.util.Collections;
-import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import org.primefaces.model.UploadedFile;
-import utilitarios.ArchivoUtil;
-import utilitarios.FacesUtil;
-import utilitarios.Respuesta;
-import utilitarios.SesionUtil;
-import utilitarios.TipoMantenimiento;
-import java.util.List;
+
 
 /**
  * Backing Bean para la el mantenimiento de un curso. En este caso, se muestra
  * únicamente la funcionalidad para cargar una imágen binaria y una imágen
  * codificada en base64. Se omite el resto de la funcionalidad.
  *
- * @author Unidad de Tecnologías de Información, Decanato Facultad de Educación.
+ * @author Ing. Adrián Alvarado Ramírez.
  * UCR.
  */
 @ManagedBean
 public class ConfigurarCursoBean implements Serializable {
 
     private PmCurso curso;
-    private TipoMantenimiento tipo;
-    private String etiquetaMantenimiento;
-    private UploadedFile posterArchivo;
-    private UploadedFile imagenArchivo;
-    private List<PmModalidad> listaModalidades;
-    private List<AdmMoneda> listaMonedas;
-    private boolean renderizarCamposSeleccione;
 
-    private AccesoModalidad accesoModalidad;
 
     public ConfigurarCursoBean() {
 
@@ -56,6 +34,9 @@ public class ConfigurarCursoBean implements Serializable {
      * siguiente:
      *
      * max_allowed_packet = 10M
+     *
+     * En el caso de Mysql 5.7 en ubuntu 16.04, esta directiva está en el archivo
+     * /etc/mysql/mysql.conf.d/mysqld.cnf, pero ya está configurada en 16M
      *
      * Si el archivo my.ini (Windows) no existe y se utilizó el intalador MSI,
      * es probable que este archivo esté en la carpeta:
@@ -83,7 +64,7 @@ public class ConfigurarCursoBean implements Serializable {
      */
     public void cargarImagenArchivo() {
 
-               // Se obtiene la extensión (sin el punto) y se guarda en una variable denominada etension.
+               // Se obtiene la extensión (sin el punto) y se guarda en una variable denominada extension.
 
                //AccesoCurso accesoCurso = new AccesoCurso();
                curso.setImagen("data:image/" + extension + ";base64," + Base64.getEncoder().encodeToString(imagenArchivo.getContents()));
