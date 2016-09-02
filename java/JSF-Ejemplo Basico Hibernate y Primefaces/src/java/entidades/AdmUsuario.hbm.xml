@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-sep-2016 14:54:58 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.AdmUsuario" table="adm_usuario" catalog="basedatos" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="usuarioInstitucional" type="string">
+            <column name="USUARIO_INSTITUCIONAL" length="64" not-null="true">
+                <comment>Usuario institucional, utilizado para la autenticaci&#195;&#179;n mediante el LDAP de la universidad, y autorizaci&#195;&#179;n mediante el
+                sistema.</comment>
+            </column>
+        </property>
+        <property name="avatar" type="string">
+            <column name="AVATAR">
+                <comment>Una peque&#195;&#177;a im&#195;&#161;gen del usuario.</comment>
+            </column>
+        </property>
+        <property name="activo" type="boolean">
+            <column name="ACTIVO" not-null="true">
+                <comment>Booleano que indica si el usuario est&#195;&#161; activo (1) o inactivo (0). Un usuario inactivo no puede ingresar al sistema.</comment>
+            </column>
+        </property>
+        <set name="admRols" table="adm_rol_usuario" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="ADM_USUARIO_ID" not-null="true">
+                    <comment>Identificador del usuario, para referencia.</comment>
+                </column>
+            </key>
+            <many-to-many entity-name="entidades.AdmRol">
+                <column name="ADM_ROL_ID" not-null="true">
+                    <comment>Identificador del rol.</comment>
+                </column>
+            </many-to-many>
+        </set>
+        <set name="admAuditorias" table="adm_auditoria" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ADM_USUARIO_ID" not-null="true">
+                    <comment>Identificador el usuario que realiza la acci&#195;&#179;n.</comment>
+                </column>
+            </key>
+            <one-to-many class="entidades.AdmAuditoria" />
+        </set>
+    </class>
+</hibernate-mapping>

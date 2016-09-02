@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-sep-2016 14:54:58 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.AdmPermiso" table="adm_permiso" catalog="basedatos" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="admVista" class="entidades.AdmVista" fetch="select">
+            <column name="ADM_VISTA_ID" not-null="true">
+                <comment>C&#195;&#179;digo de la vista a la que el usuario tiene permiso.</comment>
+            </column>
+        </many-to-one>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" not-null="true">
+                <comment>Descripci&#195;&#179;n del permiso.</comment>
+            </column>
+        </property>
+        <property name="consulta" type="boolean">
+            <column name="CONSULTA" not-null="true">
+                <comment>Este campo indica si el usuario es de consulta o de edici&#195;&#179;n. Si es de consulta (1), el usuario no puede insertar, modificar o eliminar. Si es
+                de edici&#195;&#179;n, el usuario puedo realizar cualquier edici&#195;&#179;n sobre los datos que muestra la vista.</comment>
+            </column>
+        </property>
+        <set name="admRols" table="adm_rol_permiso" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="ADM_PERMISO_ID" not-null="true">
+                    <comment>Identificador que referencia la tabla adm_permiso.</comment>
+                </column>
+            </key>
+            <many-to-many entity-name="entidades.AdmRol">
+                <column name="ADM_ROL_ID" not-null="true">
+                    <comment>Identificador que referencia la tabla adm_rol.</comment>
+                </column>
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

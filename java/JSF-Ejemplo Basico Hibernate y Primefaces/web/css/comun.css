@@ -1,0 +1,53 @@
+/* 
+    Estilo principal 
+    Created on : 26-ago-2016, 10:53:33
+    Author     : Ing. Adrián Alvarado Ramírez <adrian.alvarado_r@ucr.ac.cr> - Facultad de Educación, Universidad de Costa Rica
+*/
+
+@import "encabezado.css";
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 0 auto;
+}
+
+
+h1{
+    text-align: center;
+    margin: 0;
+}
+
+h2{
+    text-align: center;
+}
+
+.pie{
+    text-align: center;
+}
+
+.ui-widget-header, .ui-button{
+    background: #91bb1b !important;
+    color: white !important;
+    text-shadow: none !important;
+}
+
+.ui-corner-top {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+.ui-corner-all {
+    border-radius: 0 !important;
+}
+
+.ui-state-default {
+    box-shadow: none !important;
+}
+
+.ui-icon.fa{
+    margin-top: -10px !important;
+}

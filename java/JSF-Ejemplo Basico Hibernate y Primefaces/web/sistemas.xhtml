@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"      
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Sistemas - Inicio</title>
+        <link href="css/comun.css" rel="stylesheet" type="text/css"/>
+        <link href="css/sistemas.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>        
+        <ui:include src="/WEB-INF/encabezado.xhtml" />
+
+        <h:form>
+            <p:menubar>
+                <p:submenu label="Ayuda" icon="ui-icon-help">
+                    <p:menuitem value="Contenido" onclick="PF('ayuda').show();"  />
+                    <p:menuitem value="Acerca de..." onclick="PF('acercaDeDialog').show();" />
+                </p:submenu>
+            </p:menubar>
+
+            <h2>Seleccion un sistema para administrar</h2>            
+
+            <p:dataGrid var="sistema" value="#{sistemasBean.listaSistemas}" columns="#{sistemasBean.listaSistemas.size() lt 3 ? sistemasBean.listaSistemas.size() : 3}" layout="grid"
+                        paginator="false" >         
+
+                <p:panel style="text-align:center">
+                    <h:panelGrid columns="1" style="width:100%">
+                        <img src="#{sistema.icono}" class="icono"/>
+
+                        <h:outputText value="#{sistema.descripcion}" />
+                        <p:button outcome="mantenimiento/configuracion?sis=#{sistema.id}" includeViewParams="true" value="Administrar" icon="fa fa-fw fa-edit" />
+                    </h:panelGrid>
+                </p:panel>
+
+            </p:dataGrid>
+            
+            <ui:include src="/WEB-INF/ayuda/sistemas.xhtml" />
+            <ui:include src="/WEB-INF/acercade.xhtml" />
+        </h:form>
+
+        <ui:include src="/WEB-INF/pie.xhtml" />
+    </h:body>
+</html>
+

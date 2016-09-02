@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"      
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Configuración de sistema</title>       
+        <link href="../css/comun.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <ui:include src="/WEB-INF/encabezado.xhtml" />
+
+        <h:form>
+            <ui:include src="/WEB-INF/spinner.xhtml" />
+            
+            <p:menubar>
+                <p:submenu label="Ayuda" icon="ui-icon-help">
+                    <p:menuitem value="Contenido" onclick="PF('ayuda').show();"  />
+                    <p:menuitem value="Acerca de..." onclick="PF('acercaDeDialog').show();" />
+                </p:submenu>
+            </p:menubar>
+            
+            <h2>#{configuracionBean.sistema.descripcion}</h2>
+            
+            <p:panel header="Información general del sistema">
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+                <p:panelGrid id="campos" columns="3">  
+                    <p:outputLabel for="txtNombre" value="Nombre:" />
+                    <p:inputText id="txtNombre" placeholder="Nombre corto del sistema" required="true" requiredMessage="Debe ingresar el nombre del sistema" size="45" maxlength="45" />
+                    <p:message for="txtNombre" display="icon" />
+
+                    <p:outputLabel for="txtDescripcion" value="Descripción: " />
+                    <p:inputText id="txtDescripcion" placeholder="Descripción o título largo del sistema" required="true" requiredMessage="Debe ingresar el nombre del sistema" size="100" maxlength="255" />
+                    <p:message for="txtDescripcion" display="icon" />
+
+                </p:panelGrid>
+
+                <div class="botonoera">
+                    <p:commandButton value="Aceptar" actionListener="#{configuracionBean.almacenar()}" validateClient="true" update="campos" icon="fa fa-check fa-fw" >
+                        <f:param name="sis" value="#{configuracionBean.idSistema}" />
+                    </p:commandButton>
+                    <p:button outcome="/sistemas" value="Cancelar" icon="fa fa-fw fa-times" />
+                </div>
+            </p:panel>
+
+            <ui:include src="/WEB-INF/ayuda/configuracion.xhtml" />
+            <ui:include src="/WEB-INF/acercade.xhtml" />
+        </h:form>
+
+
+        <ui:include src="/WEB-INF/pie.xhtml" />
+    </h:body>
+</html>
+

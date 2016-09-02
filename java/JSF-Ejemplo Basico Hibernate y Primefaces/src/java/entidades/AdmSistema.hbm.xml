@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-sep-2016 14:54:58 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.AdmSistema" table="adm_sistema" catalog="basedatos" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="45" not-null="true">
+                <comment>Nombre del sistema.</comment>
+            </column>
+        </property>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="45" />
+        </property>
+        <property name="icono" type="string">
+            <column name="ICONO">
+                <comment>Descripci&#195;&#179;n del sistema.</comment>
+            </column>
+        </property>
+        <property name="activo" type="boolean">
+            <column name="ACTIVO" not-null="true">
+                <comment>Indica si el sistema est&#195;&#161; activo o no. Solo los super-usuarios deber&#195;&#173;an poder activar/desactivar sistemas.</comment>
+            </column>
+        </property>
+        <set name="admVistas" table="adm_vista" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ADM_SISTEMA_ID">
+                    <comment>Referencia a la columna del sistema.</comment>
+                </column>
+            </key>
+            <one-to-many class="entidades.AdmVista" />
+        </set>
+    </class>
+</hibernate-mapping>

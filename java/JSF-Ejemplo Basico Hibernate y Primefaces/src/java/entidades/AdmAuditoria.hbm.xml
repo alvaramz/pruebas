@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-sep-2016 14:54:58 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.AdmAuditoria" table="adm_auditoria" catalog="basedatos" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="admUsuario" class="entidades.AdmUsuario" fetch="select">
+            <column name="ADM_USUARIO_ID" not-null="true">
+                <comment>Identificador el usuario que realiza la acci&#195;&#179;n.</comment>
+            </column>
+        </many-to-one>
+        <property name="accion" type="string">
+            <column name="ACCION" not-null="true">
+                <comment>Acci&#195;&#179;n, expresada en palabras, hecha en el sistema.</comment>
+            </column>
+        </property>
+        <property name="fecha" type="timestamp">
+            <column name="FECHA" length="19" not-null="true">
+                <comment>Fecha y hora en que se realiza la acci&#195;&#179;n.</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

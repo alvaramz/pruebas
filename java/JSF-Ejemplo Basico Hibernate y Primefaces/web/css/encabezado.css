@@ -1,0 +1,55 @@
+
+/* 
+    Contiene las reglas para el encabezado. Corresponde a las etiquetas localizadas en WEB-INF/encabezado.xhtml
+    Created on : 30-ago-2016, 8:30:59
+    Author     : Ing. Adrián Alvarado Ramírez <adrian.alvarado_r@ucr.ac.cr> - Facultad de Educación, Universidad de Costa Rica
+*/
+
+.botones{
+    padding-left: 1em;
+    padding-top: 0.5em;
+    background-color: #767779;
+    width: 100%;
+    padding-bottom: 2em;    
+}
+
+.botonesIzq{
+    display: inline-block;
+    width: 49%;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.botonesIzq img{
+    margin-right: 0.5em;
+    vertical-align: middle;
+}
+
+.botonesDer{
+    display: inline-block;
+    width: 49%;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.titulo{
+    height: 3.5em;
+    line-height: 3.5em; /* Esto es para centrar el texto verticalmente en el medio. */
+    background-color: #91bb1b;    
+    color: #ffffff;
+}
+
+.logoUCR{
+    width: 90px;
+    height: 45px;    
+}
+
+.logoFacedu{
+    width: 50px;
+    height: 60px;   
+}
+
+.logoRedSocial{
+    width: 40px;
+    height: 40px;
+}

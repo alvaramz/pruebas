@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-sep-2016 14:54:58 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.AdmRol" table="adm_rol" catalog="basedatos" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="350" not-null="true">
+                <comment>Descripci&#195;&#179;n del rol.</comment>
+            </column>
+        </property>
+        <set name="admUsuarios" table="adm_rol_usuario" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="ADM_ROL_ID" not-null="true">
+                    <comment>Identificador del rol.</comment>
+                </column>
+            </key>
+            <many-to-many entity-name="entidades.AdmUsuario">
+                <column name="ADM_USUARIO_ID" not-null="true">
+                    <comment>Identificador del usuario, para referencia.</comment>
+                </column>
+            </many-to-many>
+        </set>
+        <set name="admPermisos" table="adm_rol_permiso" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="ADM_ROL_ID" not-null="true">
+                    <comment>Identificador que referencia la tabla adm_rol.</comment>
+                </column>
+            </key>
+            <many-to-many entity-name="entidades.AdmPermiso">
+                <column name="ADM_PERMISO_ID" not-null="true">
+                    <comment>Identificador que referencia la tabla adm_permiso.</comment>
+                </column>
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

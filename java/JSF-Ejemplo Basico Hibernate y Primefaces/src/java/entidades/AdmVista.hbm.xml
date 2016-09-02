@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-sep-2016 14:54:58 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entidades.AdmVista" table="adm_vista" catalog="basedatos" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="admSistema" class="entidades.AdmSistema" fetch="select">
+            <column name="ADM_SISTEMA_ID">
+                <comment>Referencia a la columna del sistema.</comment>
+            </column>
+        </many-to-one>
+        <property name="url" type="string">
+            <column name="URL" length="350" not-null="true">
+                <comment>Url de la p&#195;&#161;gina</comment>
+            </column>
+        </property>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="16777215">
+                <comment>Descripci&#195;&#179;n de la vista, que tambi&#195;&#169;n sirve de ayuda al usuario al momento de asignar los permisos.</comment>
+            </column>
+        </property>
+        <set name="admPermisos" table="adm_permiso" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ADM_VISTA_ID" not-null="true">
+                    <comment>C&#195;&#179;digo de la vista a la que el usuario tiene permiso.</comment>
+                </column>
+            </key>
+            <one-to-many class="entidades.AdmPermiso" />
+        </set>
+    </class>
+</hibernate-mapping>

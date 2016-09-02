@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"      
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Sistemas - Inicio</title>
+        <link href="css/comun.css" rel="stylesheet" type="text/css"/>        
+        <link href="css/login.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>        
+        <ui:include src="/WEB-INF/encabezado.xhtml" />
+
+        <h:form>
+            <p:menubar>
+                <p:submenu label="Ayuda" icon="ui-icon-help">
+                    <p:menuitem value="Contenido" onclick="PF('ayuda').show();"  />
+                    <p:menuitem value="Acerca de..." onclick="PF('acercaDeDialog').show();" />
+                </p:submenu>
+            </p:menubar>
+
+            <h2>Ingreso al sistema de administración de aplicaciones de la facultad</h2>
+            <p:messages id="mensajes" showDetail="true" />
+            <p:panel header="Ingreso con usuario institucional."  >
+                <p:panelGrid columns="2" styleClass="tablaLogin">
+                    <h:outputLabel for="usuario" value="Usuario: " />
+                    <p:inputText id="usuario" value="#{loginBean.usuario}" size="50" />
+
+                    <h:outputLabel for="password" value="Contraseña: " />
+                    <p:password id="password" value="#{loginBean.password}" size="50" />
+                </p:panelGrid>
+                <div class="botonera">
+                    <p:commandButton id="botonSubmit" icon="fa fa-fw fa-sign-in" value="Ingresar" actionListener="#{loginBean.ingresar()}" update="mensajes" />                
+                </div>
+            </p:panel>
+            
+            <ui:include src="/WEB-INF/ayuda/login.xhtml" />
+            <ui:include src="/WEB-INF/acercade.xhtml" />
+        </h:form>
+
+        <ui:include src="/WEB-INF/pie.xhtml" />
+    </h:body>
+</html>
+
