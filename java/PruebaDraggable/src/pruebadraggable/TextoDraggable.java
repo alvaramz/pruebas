@@ -11,11 +11,11 @@ import javax.swing.JTextField;
  */
 public class TextoDraggable extends JTextField {
 
-    // Este se mantiene sinb cambios.
+    // Este se mantiene sin cambios.
     private int xOriginal;
     // Este es el y en que se encuentra en un momento dado;
     private int y;
-    // Permite guardar la posición y del click del ratón, y sirve como referencia para el movimiento.
+    // Permite guardar la posición y del click del ratón con respecto a la pantalla, y sirve como referencia para el movimiento.
     private int yRaton;
 
     public TextoDraggable() {
@@ -42,7 +42,7 @@ public class TextoDraggable extends JTextField {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            //yRaton = e.getYOnScreen();
+            
         }
 
         @Override
@@ -72,6 +72,10 @@ public class TextoDraggable extends JTextField {
         @Override
         public void mouseDragged(MouseEvent e) {
             int cambioY = y + e.getY();
+            
+            // Hay que reajustar y eliminar la pos del control.
+            cambioY -= yRaton;
+            setText("y del componente =>" + y + "Y del ratón => "+ e.getY() + " y del ratón on screen => " + e.getYOnScreen());
 
             setLocation(xOriginal, cambioY);           
             actualizarPosicion();
