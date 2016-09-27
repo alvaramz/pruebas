@@ -70,7 +70,7 @@ public final class AddOn3 extends WeakBase
             if ( aURL.Path.compareTo("Command0") == 0 )
             {
                 //JOptionPane.showMessageDialog(null, "Hola");
-                new Thread(new DialogDemo(new Frame())).run();
+                new Thread(new DialogDemo(null)).run();
                 return;
             }
         }
